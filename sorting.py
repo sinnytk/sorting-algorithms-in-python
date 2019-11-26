@@ -35,3 +35,17 @@ class Sorting():
             if not swapped:
                 break
         print(f'Sorted array: {sorted_array}')
+
+    def selection_iterative(self):
+        print(f'SELECTION SORT(ITERATIVE)')
+
+        sorted_array = self.array
+        n = self.size
+
+        for i in range(n):
+            to_replace = i
+            for j in range(i+1, n):
+                if sorted_array[j] < sorted_array[to_replace]:
+                    to_replace = j
+            sorted_array[to_replace], sorted_array[i] = sorted_array[i], sorted_array[to_replace]
+        print(f'Sorted array: {sorted_array}')

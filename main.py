@@ -5,3 +5,4 @@ sort = Sorting(array)
 
 sort.bubble_iterative()
 sort.bubble_modified_iterative()
+sort.selection_iterative()
