@@ -18,3 +18,20 @@ class Sorting():
                     sorted_array[j], sorted_array[j +
                                                   1] = sorted_array[j+1], sorted_array[j]
         print(f'Sorted array: {sorted_array}')
+
+    def bubble_modified_iterative(self):
+        print(f'BUBBLE MODIFIED SORT(ITERATIVE)')
+
+        sorted_array = self.array
+        n = self.size
+
+        for i in range(n):
+            swapped = False
+            for j in range(n-1-i):
+                if sorted_array[j] > sorted_array[j+1]:
+                    sorted_array[j], sorted_array[j +
+                                                  1] = sorted_array[j+1], sorted_array[j]
+                    swapped = True
+            if not swapped:
+                break
+        print(f'Sorted array: {sorted_array}')
