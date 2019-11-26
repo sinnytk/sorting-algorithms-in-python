@@ -49,3 +49,18 @@ class Sorting():
                     to_replace = j
             sorted_array[to_replace], sorted_array[i] = sorted_array[i], sorted_array[to_replace]
         print(f'Sorted array: {sorted_array}')
+
+    def insertion_iterative(self):
+        print(f'INSERTION SORT(ITERATIVE)')
+
+        sorted_array = self.array
+        n = self.size
+
+        for i in range(1, n):
+            key = sorted_array[i]
+            j = i-1
+            while(j > 0 and key < sorted_array[j]):
+                sorted_array[j+1] = sorted_array[j]
+                j -= 1
+            sorted_array[j+1] = key
+        print(f'Sorted array: {sorted_array}')
