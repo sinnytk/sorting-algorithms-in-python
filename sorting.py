@@ -18,6 +18,7 @@ class Sorting():
                     sorted_array[j], sorted_array[j +
                                                   1] = sorted_array[j+1], sorted_array[j]
         print(f'Sorted array: {sorted_array}')
+        return sorted_array
 
     def bubble_modified_iterative(self):
         print(f'BUBBLE MODIFIED SORT(ITERATIVE)')
@@ -35,6 +36,7 @@ class Sorting():
             if not swapped:
                 break
         print(f'Sorted array: {sorted_array}')
+        return sorted_array
 
     def selection_iterative(self):
         print(f'SELECTION SORT(ITERATIVE)')
@@ -49,6 +51,7 @@ class Sorting():
                     to_replace = j
             sorted_array[to_replace], sorted_array[i] = sorted_array[i], sorted_array[to_replace]
         print(f'Sorted array: {sorted_array}')
+        return sorted_array
 
     def insertion_iterative(self):
         print(f'INSERTION SORT(ITERATIVE)')
@@ -64,3 +67,4 @@ class Sorting():
                 j -= 1
             sorted_array[j+1] = key
         print(f'Sorted array: {sorted_array}')
+        return sorted_array
