@@ -12,7 +12,7 @@ class Sorting():
     def bubble_iterative(self):
         print(f'BUBBLE SORT(ITERATIVE)')
 
-        sorted_array = self.array
+        sorted_array = self.array.copy()
         n = self.size
 
         for i in range(n):
@@ -26,7 +26,7 @@ class Sorting():
     def bubble_modified_iterative(self):
         print(f'BUBBLE MODIFIED SORT(ITERATIVE)')
 
-        sorted_array = self.array
+        sorted_array = self.array.copy()
         n = self.size
 
         for i in range(n):
@@ -44,7 +44,7 @@ class Sorting():
     def selection_iterative(self):
         print(f'SELECTION SORT(ITERATIVE)')
 
-        sorted_array = self.array
+        sorted_array = self.array.copy()
         n = self.size
 
         for i in range(n):
@@ -59,7 +59,7 @@ class Sorting():
     def insertion_iterative(self):
         print(f'INSERTION SORT(ITERATIVE)')
 
-        sorted_array = self.array
+        sorted_array = self.array.copy()
         n = self.size
 
         for i in range(1, n):
@@ -103,4 +103,53 @@ class Sorting():
             buckets[i] = insertion_sort(buckets[i])
             sorted_array.extend(buckets[i])
         print(f'Sorted array: {sorted_array}')
+        return sorted_array
+
+    def merge_iterative(self):
+        sorted_array = self.array.copy()
+        n = self.size
+
+        def merge(a, l, m, r):
+            n1 = m - l + 1
+            n2 = r - m
+            L = [0] * n1
+            R = [0] * n2
+            for i in range(0, n1):
+                L[i] = a[l + i]
+            for i in range(0, n2):
+                R[i] = a[m + i + 1]
+
+            i, j, k = 0, 0, l
+            while i < n1 and j < n2:
+                if L[i] > R[j]:
+                    a[k] = R[j]
+                    j += 1
+                else:
+                    a[k] = L[i]
+                    i += 1
+                k += 1
+
+            while i < n1:
+                a[k] = L[i]
+                i += 1
+                k += 1
+
+            while j < n2:
+                a[k] = R[j]
+                j += 1
+                k += 1
+
+        current_size = 1
+        while current_size < len(sorted_array) - 1:
+
+            left = 0
+            while left < len(sorted_array)-1:
+                mid = left + current_size - 1
+                right = ((2 * current_size + left - 1,
+                          len(sorted_array) - 1)[2 * current_size
+                                                 + left - 1 > len(sorted_array)-1])
+                merge(sorted_array, left, mid, right)
+                left = left + current_size*2
+            current_size = 2 * current_size
+
         return sorted_array
