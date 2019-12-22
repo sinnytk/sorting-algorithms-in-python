@@ -187,3 +187,25 @@ class Sorting():
 
         merge_recursive_calls(sorted_array, n)
         return sorted_array
+
+    def quick_recursive(self):
+        sorted_array = self.array.copy()
+        n = self.size
+
+        def partition(arr, l, h):
+            pivot = arr[h]
+            i = l
+            for j in range(l, h):
+                if arr[j] <= pivot:
+                    arr[i], arr[j] = arr[j], arr[i]
+                    i = i+1
+            arr[i], arr[h] = arr[h], arr[i]
+            return i
+
+        def quick_sort(arr, l, h):
+            if l < h:
+                pivot = partition(arr, l, h)
+                quick_sort(arr, l, pivot-1)
+                quick_sort(arr, pivot+1, h)
+        quick_sort(sorted_array, 0, n-1)
+        return sorted_array
