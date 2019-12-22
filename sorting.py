@@ -153,3 +153,37 @@ class Sorting():
             current_size = 2 * current_size
 
         return sorted_array
+
+    def merge_recursive(self):
+        sorted_array = self.array.copy()
+        n = self.size
+
+        def merge_recursive_calls(sorted_array, n):
+            if n > 1:
+                mid = n//2
+                left = sorted_array[:mid]
+                right = sorted_array[mid:]
+
+                merge_recursive_calls(left, len(left))
+                merge_recursive_calls(right, len(right))
+
+                i = j = k = 0
+                while j < len(left) and k < len(right):
+                    if left[j] < right[k]:
+                        sorted_array[i] = left[j]
+                        j += 1
+                    else:
+                        sorted_array[i] = right[k]
+                        k += 1
+                    i += 1
+                while j < len(left):
+                    sorted_array[i] = left[j]
+                    i += 1
+                    j += 1
+                while k < len(right):
+                    sorted_array[i] = right[k]
+                    i += 1
+                    k += 1
+
+        merge_recursive_calls(sorted_array, n)
+        return sorted_array
