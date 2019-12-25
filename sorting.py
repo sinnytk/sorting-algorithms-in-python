@@ -370,3 +370,22 @@ class Sorting():
             sorted_array[i], sorted_array[0] = sorted_array[0], sorted_array[i]
             heapify(sorted_array, i, 0)
         return(sorted_array)
+
+    def counting_iterative(self):
+        sorted_array = self.array.copy()
+        n = self.size
+
+        max_item = max(sorted_array)
+        count = [0] * (max_item+1)
+
+        for elem in sorted_array:
+            count[elem] += 1
+
+        i = 0
+        for j in range(len(count)):
+            while(count[j] > 0):
+                sorted_array[i] = j
+                count[j] -= 1
+                i = i+1
+
+        return(sorted_array)
