@@ -325,3 +325,22 @@ class Sorting():
 
         inorder_traversal(tree, sorted_array)
         return sorted_array
+
+    def tree_iterative(self):
+        print(self.array)
+        tree = TreeNode(self.array[0])
+        n = self.size
+        sorted_array = []
+        for el in self.array[1:]:
+            tree.insert(el)
+
+        stack = []
+        while(True):
+            while(tree):
+                stack.append(tree)
+                tree = tree.left
+            if len(stack) == 0:
+                return sorted_array
+            tree = stack.pop()
+            sorted_array.append(tree.value)
+            tree = tree.right
