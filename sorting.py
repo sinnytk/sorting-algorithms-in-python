@@ -1,6 +1,25 @@
 from math import floor
 
 
+class TreeNode():
+    def __init__(self, val):
+        self.left = None
+        self.right = None
+        self.value = val
+
+    def insert(self, val):
+        if val < self.value:
+            if not self.left:
+                self.left = TreeNode(val)
+            else:
+                self.left.insert(val)
+        else:
+            if not self.right:
+                self.right = TreeNode(val)
+            else:
+                self.right.insert(val)
+
+
 class Sorting():
     array = []
     size = 0
@@ -288,4 +307,21 @@ class Sorting():
                         right += 1
 
         merge_recursive_calls(sorted_array, 0, n-1)
+        return sorted_array
+
+    def tree_recursive(self):
+        tree = TreeNode(self.array[0])
+        n = self.size
+        sorted_array = []
+        for el in self.array[1:]:
+            tree.insert(el)
+
+        def inorder_traversal(root, l):
+
+            if root:
+                left = inorder_traversal(root.left, l)
+                l.append(root.value)
+                right = inorder_traversal(root.right, l)
+
+        inorder_traversal(tree, sorted_array)
         return sorted_array
