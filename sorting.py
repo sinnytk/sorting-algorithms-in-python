@@ -242,3 +242,18 @@ class Sorting():
                 stack.append(pivot+1)
                 stack.append(h)
         return sorted_array
+
+    def shell_iterative(self):
+        sorted_array = self.array.copy()
+        n = self.size
+        gap = n // 2
+        while gap > 0:
+            for i in range(gap, n):
+                temp = sorted_array[i]
+                j = i
+                while j >= gap and sorted_array[j - gap] > temp:
+                    sorted_array[j] = sorted_array[j - gap]
+                    j -= gap
+                sorted_array[j] = temp
+            gap //= 2
+        return sorted_array
