@@ -209,3 +209,36 @@ class Sorting():
                 quick_sort(arr, pivot+1, h)
         quick_sort(sorted_array, 0, n-1)
         return sorted_array
+
+    def quick_iterative(self):
+        sorted_array = self.array.copy()
+        n = self.size
+
+        def partition(arr, l, h):
+            pivot = arr[h]
+            i = l
+            for j in range(l, h):
+                if arr[j] <= pivot:
+                    arr[i], arr[j] = arr[j], arr[i]
+                    i = i+1
+            arr[i], arr[h] = arr[h], arr[i]
+            return i
+
+        l = 0
+        h = n-1
+        stack = [None] * (n)
+
+        stack.append(l)
+        stack.append(h)
+        while(stack[-1]):
+            h = stack.pop()
+            l = stack.pop()
+            pivot = partition(sorted_array, l, h)
+
+            if pivot-1 > l:
+                stack.append(l)
+                stack.append(pivot-1)
+            if pivot+1 < h:
+                stack.append(pivot+1)
+                stack.append(h)
+        return sorted_array
