@@ -257,3 +257,35 @@ class Sorting():
                 sorted_array[j] = temp
             gap //= 2
         return sorted_array
+
+    def merge_inplace_recursive(self):
+        sorted_array = self.array.copy()
+        n = self.size
+
+        def merge_recursive_calls(sorted_array, first, last):
+            if first < last:
+                mid = (first + last)//2
+
+                merge_recursive_calls(sorted_array, first, mid)
+                merge_recursive_calls(sorted_array, mid+1, last)
+
+                left = first
+                right = mid+1
+                if sorted_array[mid] <= sorted_array[right]:
+                    return
+                while left <= mid and right <= last:
+                    if sorted_array[left] <= sorted_array[right]:
+                        left += 1
+                    else:
+                        temp = sorted_array[right]
+                        index = right
+                        while(index != left):
+                            sorted_array[index] = sorted_array[index-1]
+                            index -= 1
+                        sorted_array[left] = temp
+                        left += 1
+                        mid += 1
+                        right += 1
+
+        merge_recursive_calls(sorted_array, 0, n-1)
+        return sorted_array
