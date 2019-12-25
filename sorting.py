@@ -344,3 +344,29 @@ class Sorting():
             tree = stack.pop()
             sorted_array.append(tree.value)
             tree = tree.right
+
+    def heap_iterative(self):
+        sorted_array = self.array.copy()
+        n = self.size
+
+        def heapify(array, size, root):
+            largest = root
+            left = 2*root+1
+            right = 2*root+2
+
+            if left < size and array[largest] < array[left]:
+                largest = left
+            if right < size and array[largest] < array[right]:
+                largest = right
+
+            if largest != root:
+                array[root], array[largest] = array[largest], array[root]
+                heapify(array, size, largest)
+
+        for i in range(n-1, -1, -1):
+            heapify(sorted_array, n, i)
+
+        for i in range(n-1, 0, -1):
+            sorted_array[i], sorted_array[0] = sorted_array[0], sorted_array[i]
+            heapify(sorted_array, i, 0)
+        return(sorted_array)
