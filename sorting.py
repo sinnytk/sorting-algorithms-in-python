@@ -74,6 +74,29 @@ class Sorting():
         print(f'Sorted array: {sorted_array}')
         return sorted_array
 
+    def bubble_modified_recursive(self):
+        sorted_array = self.array.copy()
+        n = self.size
+
+        def bubble_recursive_calls(array, n):
+            if n == 1:
+                return
+            isSorted = False
+            for i in range(n-1):
+                if array[i] <= array[i+1]:
+                    isSorted = True
+                else:
+                    isSorted = False
+                    break
+            if isSorted:
+                return
+            for i in range(n-1):
+                if array[i] > array[i+1]:
+                    array[i], array[i+1] = array[i+1], array[i]
+            bubble_recursive_calls(array, n-1)
+        bubble_recursive_calls(sorted_array, n-1)
+        return sorted_array
+
     def selection_iterative(self):
         print(f'SELECTION SORT(ITERATIVE)')
 
