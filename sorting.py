@@ -112,6 +112,31 @@ class Sorting():
         print(f'Sorted array: {sorted_array}')
         return sorted_array
 
+    def selection_recursive(self):
+        sorted_array = self.array.copy()
+        n = self.size
+
+        def selection_recursive_min(array, start, end):
+            if start == end:
+                return start
+
+            minimum = selection_recursive_min(array, start+1, end)
+
+            return minimum if array[minimum] < array[start] else start
+
+        def selection_recursive_calls(array, size, start=0):
+            if start == size:
+                return
+            minimum = selection_recursive_min(array, start, size-1)
+
+            if minimum != start:
+                array[minimum], array[start] = array[start], array[minimum]
+
+            selection_recursive_calls(array, size, start+1)
+
+        selection_recursive_calls(sorted_array, n)
+        return sorted_array
+
     def insertion_iterative(self):
         print(f'INSERTION SORT(ITERATIVE)')
 
