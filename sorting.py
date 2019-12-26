@@ -397,7 +397,6 @@ class Sorting():
         return sorted_array
 
     def tree_iterative(self):
-        print(self.array)
         tree = TreeNode(self.array[0])
         n = self.size
         sorted_array = []
