@@ -29,7 +29,6 @@ class Sorting():
         self.size = len(self.array)
 
     def bubble_iterative(self):
-        print(f'BUBBLE SORT(ITERATIVE)')
 
         sorted_array = self.array.copy()
         n = self.size
@@ -39,7 +38,6 @@ class Sorting():
                 if sorted_array[j] > sorted_array[j+1]:
                     sorted_array[j], sorted_array[j +
                                                   1] = sorted_array[j+1], sorted_array[j]
-        print(f'Sorted array: {sorted_array}')
         return sorted_array
 
     def bubble_recursive(self):
@@ -57,7 +55,6 @@ class Sorting():
         return sorted_array
 
     def bubble_modified_iterative(self):
-        print(f'BUBBLE MODIFIED SORT(ITERATIVE)')
 
         sorted_array = self.array.copy()
         n = self.size
@@ -71,7 +68,6 @@ class Sorting():
                     swapped = True
             if not swapped:
                 break
-        print(f'Sorted array: {sorted_array}')
         return sorted_array
 
     def bubble_modified_recursive(self):
@@ -98,7 +94,6 @@ class Sorting():
         return sorted_array
 
     def selection_iterative(self):
-        print(f'SELECTION SORT(ITERATIVE)')
 
         sorted_array = self.array.copy()
         n = self.size
@@ -109,7 +104,6 @@ class Sorting():
                 if sorted_array[j] < sorted_array[to_replace]:
                     to_replace = j
             sorted_array[to_replace], sorted_array[i] = sorted_array[i], sorted_array[to_replace]
-        print(f'Sorted array: {sorted_array}')
         return sorted_array
 
     def selection_recursive(self):
@@ -138,7 +132,6 @@ class Sorting():
         return sorted_array
 
     def insertion_iterative(self):
-        print(f'INSERTION SORT(ITERATIVE)')
 
         sorted_array = self.array.copy()
         n = self.size
@@ -150,12 +143,28 @@ class Sorting():
                 sorted_array[j+1] = sorted_array[j]
                 j -= 1
             sorted_array[j+1] = key
-        print(f'Sorted array: {sorted_array}')
 
         return sorted_array
 
+    def insertion_recursive(self):
+
+        sorted_array = self.array.copy()
+        n = self.size
+
+        def insertion_recursive_calls(array, n):
+            if n <= 1:
+                return
+            insertion_recursive_calls(array, n-1)
+            last = array[n-1]
+            j = n-2
+            while j >= 0 and array[j] > last:
+                array[j+1] = array[j]
+                j -= 1
+            array[j+1] = last
+        insertion_recursive_calls(sorted_array, n)
+        return sorted_array
+
     def bucket_iterative(self):
-        print(f'BUCKET SORT(ITERATIVE)')
 
         sorted_array = []
         n = self.size
@@ -183,7 +192,6 @@ class Sorting():
         for i in range(10):
             buckets[i] = insertion_sort(buckets[i])
             sorted_array.extend(buckets[i])
-        print(f'Sorted array: {sorted_array}')
         return sorted_array
 
     def merge_iterative(self):
