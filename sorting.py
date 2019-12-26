@@ -389,3 +389,37 @@ class Sorting():
                 i = i+1
 
         return(sorted_array)
+
+    def radix_iterative(self):
+        sorted_array = self.array.copy()
+        n = self.size
+
+        def counting_sort(array, digits):
+            size = len(array)
+            output = [0] * size
+            count = [0] * 10
+
+            for i in range(size):
+                index = array[i] // digits
+                count[index % 10] += 1
+
+            for i in range(1, 10):
+                count[i] += count[i-1]
+
+            i = size-1
+            while i >= 0:
+                index = array[i] // digits
+                output[count[index % 10]-1] = array[i]
+                count[index % 10] -= 1
+                i -= 1
+
+            for i in range(0, size):
+                array[i] = output[i]
+
+        max_item = max(sorted_array)
+        digits = 1
+        while max_item // digits > 0:
+            counting_sort(sorted_array, digits)
+            digits *= 10
+
+        return sorted_array
